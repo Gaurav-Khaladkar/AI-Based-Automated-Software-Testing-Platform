@@ -27,6 +27,7 @@ docker-compose up --build
 
 This launches:
 - **MySQL** on `localhost:3307`
+- **MySQL** on `localhost:3306`
 - **Backend** on `localhost:8080`
 - **AI Engine** on `localhost:5000`
 
