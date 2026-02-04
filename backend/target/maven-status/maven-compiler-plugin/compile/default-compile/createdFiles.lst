@@ -1,0 +1,8 @@
+com\aitest\exception\EmailAlreadyExistsException.class
+com\aitest\service\UserService.class
+com\aitest\entity\User.class
+com\aitest\repository\UserRepository.class
+com\aitest\controller\UserController.class
+com\aitest\dto\UserRegistrationRequest.class
+com\aitest\exception\GlobalExceptionHandler.class
+com\aitest\security\SecurityConfig.class
