@@ -42,6 +42,7 @@ source .venv/bin/activate
 pip install -r ai-engine/requirements.txt
 python ai-engine/bug_prediction.py
 ```
+If `model.pkl` is not present, the AI engine returns a lightweight heuristic score until you add a trained model.
 
 ### 4) Run the frontend locally (optional)
 ```bash
