@@ -48,6 +48,11 @@ If `model.pkl` is not present, the AI engine returns a lightweight heuristic sco
 #### Adding a trained model
 Place a trained `model.pkl` file in `ai-engine/model.pkl` (not stored in git). The service will automatically load it at startup and report `model_loaded: true` on `/predict`.
 
+#### Train a sample model (optional)
+```bash
+python ai-engine/train_model.py
+```
+
 ### 4) Run the frontend locally (optional)
 ```bash
 cd frontend
