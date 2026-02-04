@@ -26,6 +26,7 @@ docker-compose up --build
 ```
 
 This launches:
+- **MySQL** on `localhost:3307`
 - **MySQL** on `localhost:3306`
 - **Backend** on `localhost:8080`
 - **AI Engine** on `localhost:5000`
@@ -43,6 +44,9 @@ pip install -r ai-engine/requirements.txt
 python ai-engine/bug_prediction.py
 ```
 If `model.pkl` is not present, the AI engine returns a lightweight heuristic score until you add a trained model.
+
+#### Adding a trained model
+Place a trained `model.pkl` file in `ai-engine/model.pkl` (not stored in git). The service will automatically load it at startup and report `model_loaded: true` on `/predict`.
 
 ### 4) Run the frontend locally (optional)
 ```bash

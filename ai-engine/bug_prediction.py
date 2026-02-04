@@ -7,6 +7,15 @@ MODEL_PATH = Path(__file__).with_name("model.pkl")
 
 
 def load_model():
+    if not MODEL_PATH.exists():
+        return None
+    try:
+        model = joblib.load(MODEL_PATH)
+    except Exception:
+        return None
+    if not hasattr(model, "predict"):
+        return None
+    return model
     if MODEL_PATH.exists():
         return joblib.load(MODEL_PATH)
     return None
