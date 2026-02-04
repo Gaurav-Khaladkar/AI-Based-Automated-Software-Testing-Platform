@@ -12,6 +12,55 @@ Run the bootstrap script to create the baseline application structure:
 ./scripts/init_project.sh
 ```
 
+## How to Run (End-to-End)
+### Prerequisites
+- Java 17
+- Maven 3.9+
+- Node.js 18+
+- Python 3.11+
+- Docker + Docker Compose
+
+### 1) Start core services with Docker
+```bash
+docker-compose up --build
+```
+
+This launches:
+- **MySQL** on `localhost:3306`
+- **Backend** on `localhost:8080`
+- **AI Engine** on `localhost:5000`
+
+### 2) Run the backend locally (optional)
+```bash
+mvn -f backend/pom.xml spring-boot:run
+```
+
+### 3) Run the AI engine locally (optional)
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r ai-engine/requirements.txt
+python ai-engine/bug_prediction.py
+```
+
+### 4) Run the frontend locally (optional)
+```bash
+cd frontend
+npm install
+npm start
+```
+
+### 5) Database initialization (optional)
+```bash
+mysql -u root -p < database/schema.sql
+```
+
+### 6) Automation engine sample
+```bash
+javac automation-engine/TestRunner.java
+java TestRunner
+```
+
 ### Repository Structure
 ```
 backend/      # REST APIs, auth, orchestration
@@ -20,6 +69,9 @@ ai-engine/    # ML/NLP services
 automation-engine/  # Selenium/UI automation
 database/     # schema + migrations
 docker-compose.yml  # local dev services
+ci/           # GitHub Actions pipeline
+docs/         # project documentation assets
+reports/      # generated analytics outputs
 ```
 
 ### Example Configs & Scripts
@@ -34,6 +86,7 @@ docker-compose.yml  # local dev services
 * `frontend/src/services/authService.js`
 * `frontend/package.json`
 * `docker-compose.yml`
+* `ci/github-actions.yml`
 
 ---
 
@@ -104,6 +157,31 @@ docker-compose.yml  # local dev services
 - Monitor regression tests
 - Validate bug reports
 - Track test history
+
+---
+
+## 2.1 Module Implementation Notes
+### Backend (Spring Boot)
+- REST APIs for auth, user management, projects, and test orchestration
+- Stateless security with BCrypt password hashing and input validation
+- JPA entities stored in MySQL/PostgreSQL
+
+### Frontend (React)
+- Role-based navigation for Admin, Developer, and QA
+- Analytics and AI insights dashboards
+- Auth flows and secure API client integration
+
+### AI Engine (Python)
+- Flask service for risk prediction and NLP-driven test generation
+- Model loading via `joblib` with pandas input features
+
+### Automation Engine (Selenium)
+- Java-based UI regression runner
+- Collects logs and screenshots for reporting
+
+### CI/CD
+- GitHub Actions pipeline for backend build validation
+- Dockerized local dev via `docker-compose.yml`
 
 ---
 
