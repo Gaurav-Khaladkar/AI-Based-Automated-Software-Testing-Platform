@@ -1,0 +1,22 @@
+# Maven
+target/
+*.jar
+*.class
+
+# IntelliJ / VSCode
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+
+# Model files
+*.pkl
