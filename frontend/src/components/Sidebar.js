@@ -9,13 +9,17 @@ const navItems = [
   "Settings",
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ activeItem, onSelect }) {
   return (
     <aside className="sidebar">
       <div className="logo">AITest</div>
       <nav>
         {navItems.map((item) => (
-          <button key={item} className="nav-item">
+          <button
+            key={item}
+            className={`nav-item ${activeItem === item ? "active" : ""}`}
+            onClick={() => onSelect(item)}
+          >
             {item}
           </button>
         ))}

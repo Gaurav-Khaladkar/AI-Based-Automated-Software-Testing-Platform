@@ -12,6 +12,16 @@ Run the bootstrap script to create the baseline application structure:
 ./scripts/init_project.sh
 ```
 
+## Recent Project Changes (March 2026)
+- Fixed AI engine startup so `ai-engine/bug_prediction.py` no longer crashes when `model.pkl` is missing. It now falls back to a lightweight heuristic and returns `model_loaded: false`.
+- Hardened backend user registration response so password hashes are not exposed in API JSON responses.
+- Added missing `frontend/public/index.html`, which is required for React (`react-scripts`) dev/build commands.
+- Added frontend generated artifact ignores in `.gitignore` for cleaner local development (`node_modules`, `frontend/build`).
+- Added live project testing flow:
+  - Upload a GitHub repository URL from the frontend.
+  - Backend clones the repository, detects stack, runs tests, and stores logs/results.
+  - Real-time job list and log viewer in UI.
+
 ## How to Run (End-to-End)
 ### Prerequisites
 - Java 17
@@ -20,29 +30,57 @@ Run the bootstrap script to create the baseline application structure:
 - Python 3.11+
 - Docker + Docker Compose
 
-### 1) Start core services with Docker
+### 1) Start backend, AI engine, and database
 ```bash
-docker-compose up --build
+docker-compose up --build -d
 ```
 
 This launches:
 - **MySQL** on `localhost:3307`
-- **MySQL** on `localhost:3306`
 - **Backend** on `localhost:8080`
 - **AI Engine** on `localhost:5000`
 
-### 2) Run the backend locally (optional)
+### 2) Start frontend
+```bash
+cd frontend
+npm install
+npm start
+```
+
+Frontend opens on `http://localhost:3000`.
+
+## How to Use This Software
+1. Open `http://localhost:3000`.
+2. Use left menu to switch pages (`Overview`, `Projects`, `Test Runs`, `AI Insights`, `Reports`, `Settings`).
+3. To test a live repository:
+   - Go to `Projects`.
+   - Paste a GitHub URL (example: `https://github.com/owner/repo`).
+   - Click `Upload & Run Tests`.
+4. Watch execution status in `Live Execution Jobs`.
+5. Click `View Log` to open full run logs.
+6. Open `Test Runs` to review latest runs and quick rerun actions.
+
+## Supported Repository Types
+- Maven (`pom.xml`, runs `mvn test` or `./mvnw test`)
+- Node.js (`package.json`, runs `npm install` + `npm test -- --watch=false`)
+- Python (`requirements.txt` or `pyproject.toml`, runs `pytest`)
+
+Note: current live upload flow supports **GitHub HTTPS URLs** only.
+
+## Optional Local Runs Without Docker
+### Backend
 ```bash
 mvn -f backend/pom.xml spring-boot:run
 ```
 
-### 3) Run the AI engine locally (optional)
+### AI Engine
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r ai-engine/requirements.txt
 python ai-engine/bug_prediction.py
 ```
+
 If `model.pkl` is not present, the AI engine returns a lightweight heuristic score until you add a trained model.
 
 #### Adding a trained model
@@ -53,19 +91,12 @@ Place a trained `model.pkl` file in `ai-engine/model.pkl` (not stored in git). T
 python ai-engine/train_model.py
 ```
 
-### 4) Run the frontend locally (optional)
-```bash
-cd frontend
-npm install
-npm start
-```
-
-### 5) Database initialization (optional)
+### Database initialization (optional)
 ```bash
 mysql -u root -p < database/schema.sql
 ```
 
-### 6) Automation engine sample
+### Automation engine sample
 ```bash
 javac automation-engine/TestRunner.java
 java TestRunner
@@ -94,9 +125,9 @@ reports/      # generated analytics outputs
 * `ai-engine/Dockerfile`
 * `automation-engine/TestRunner.java`
 * `frontend/src/services/authService.js`
+* `frontend/src/services/testingService.js`
 * `frontend/package.json`
 * `docker-compose.yml`
-* `ci/github-actions.yml`
 
 ---
 
@@ -134,17 +165,17 @@ reports/      # generated analytics outputs
 ```
 
 ### Architecture Layers
-1. **Presentation Layer** – UI Dashboard
-2. **Application Layer** – REST APIs
-3. **Business Layer** – Test execution logic
-4. **AI Layer** – Test case generation & bug prediction
-5. **Data Layer** – Database
+1. **Presentation Layer** - UI Dashboard
+2. **Application Layer** - REST APIs
+3. **Business Layer** - Test execution logic
+4. **AI Layer** - Test case generation & bug prediction
+5. **Data Layer** - Database
 
 ---
 
-## 2. Module Breakdown (RBAC – Role Based Access Control)
+## 2. Module Breakdown (RBAC - Role Based Access Control)
 
-### 🔐 1. Admin Module
+### 1. Admin Module
 - Manage users (QA, Developer)
 - Assign projects
 - Configure testing environments
@@ -152,7 +183,7 @@ reports/      # generated analytics outputs
 - Manage CI/CD integrations
 - Role management
 
-### 👨‍💻 2. Developer Module
+### 2. Developer Module
 - Upload project repository (Git link)
 - Trigger automated test run
 - View bug reports
@@ -160,7 +191,7 @@ reports/      # generated analytics outputs
 - View AI-predicted risk modules
 - Download failure logs
 
-### 🧪 3. QA Module
+### 3. QA Module
 - Create manual test cases
 - Approve AI-generated test cases
 - Configure automation scripts
@@ -273,7 +304,7 @@ version
 ---
 
 ## 4. AI Features
-- NLP-based requirement → test case generation
+- NLP-based requirement -> test case generation
 - Machine learning bug prediction (based on commit history)
 - Self-healing test scripts
 - Flaky test detection

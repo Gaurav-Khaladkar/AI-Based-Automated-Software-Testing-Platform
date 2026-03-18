@@ -53,9 +53,25 @@ body {
   color: #fff;
 }
 
+.nav-item.active {
+  background: rgba(37, 99, 235, 0.3);
+  border-color: rgba(96, 165, 250, 0.8);
+  color: #fff;
+}
+
 .content {
   flex: 1;
   padding: 32px;
+}
+
+.toast {
+  margin-bottom: 16px;
+  background: #dbeafe;
+  color: #1e3a8a;
+  border: 1px solid #93c5fd;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-weight: 600;
 }
 
 .header {
@@ -84,6 +100,59 @@ body {
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
+}
+
+.primary.inline {
+  margin-top: 12px;
+}
+
+.secondary {
+  background: #e5e7eb;
+  color: #111827;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.secondary.compact {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.repo-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.repo-input {
+  flex: 1;
+  min-width: 320px;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.error-text {
+  margin-top: 10px;
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.log-output {
+  margin-top: 12px;
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 8px;
+  padding: 12px;
+  max-height: 300px;
+  overflow: auto;
+  font-size: 12px;
+  line-height: 1.45;
 }
 
 .dashboard {
@@ -157,4 +226,32 @@ body {
 .status.failed {
   background: #fee2e2;
   color: #b91c1c;
+}
+
+.status.running {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status.queued {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.status.error {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.note {
+  margin-top: 12px;
+  color: #4b5563;
+  font-weight: 600;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
 }
