@@ -2,6 +2,7 @@ from pathlib import Path
 
 import joblib
 import pandas as pd
+from flask import Flask, jsonify, request
 
 MODEL_PATH = Path(__file__).with_name("model.pkl")
 
@@ -16,36 +17,37 @@ def load_model():
     if not hasattr(model, "predict"):
         return None
     return model
-    if MODEL_PATH.exists():
-        return joblib.load(MODEL_PATH)
-    return None
-import joblib
-import pandas as pd
 
-model = joblib.load("model.pkl")
+
+def _as_float(value):
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return 0.0
 
 
 def predict_risk(lines_of_code, commits):
-    data = pd.DataFrame([[lines_of_code, commits]], columns=["loc", "commits"])
+    loc = _as_float(lines_of_code)
+    commit_count = _as_float(commits)
+    data = pd.DataFrame([[loc, commit_count]], columns=["loc", "commits"])
     model = load_model()
+
     if model is None:
-        return float(lines_of_code) * 0.001 + float(commits) * 0.1
+        return loc * 0.001 + commit_count * 0.1
+
     prediction = model.predict(data)
-    return prediction[0]
+    return float(prediction[0])
+
+
+app = Flask(__name__)
+
+
+@app.route("/predict", methods=["POST"])
+def predict():
+    payload = request.get_json(silent=True) or {}
+    result = predict_risk(payload.get("loc", 0), payload.get("commits", 0))
+    return jsonify({"risk_score": result, "model_loaded": load_model() is not None})
 
 
 if __name__ == "__main__":
-    from flask import Flask, jsonify, request
-
-    app = Flask(__name__)
-
-    @app.route("/predict", methods=["POST"])
-    def predict():
-        payload = request.json or {}
-        result = predict_risk(payload.get("loc", 0), payload.get("commits", 0))
-        return jsonify({"risk_score": result, "model_loaded": load_model() is not None})
-        payload = request.json
-        result = predict_risk(payload["loc"], payload["commits"])
-        return jsonify({"risk_score": result})
-
-    app.run(port=5000)
+    app.run(host="0.0.0.0", port=5000)
