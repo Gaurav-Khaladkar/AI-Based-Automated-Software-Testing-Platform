@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Test Platform - Executive Quality & Test Run Report</title>
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #131b2e;
+            --bg-card: #1c2640;
+            --accent-cyan: #06b6d4;
+            --accent-indigo: #6366f1;
+            --accent-success: #10b981;
+            --accent-danger: #ef4444;
+            --accent-warning: #f59e0b;
+            --text-primary: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background: var(--bg-primary); color: var(--text-primary); padding: 32px; line-height: 1.5; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 24px; margin-bottom: 32px; }
+        .title-badge { background: linear-gradient(135deg, var(--accent-indigo), var(--accent-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 28px; font-weight: 800; }
+        .meta-tag { background: rgba(99, 102, 241, 0.15); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.3); padding: 6px 14px; border-radius: 9999px; font-size: 13px; font-weight: 600; }
+        .grid-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 32px; }
+        .stat-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; padding: 22px; position: relative; overflow: hidden; }
+        .stat-card::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent-indigo); }
+        .stat-card.passed::after { background: var(--accent-success); }
+        .stat-card.failed::after { background: var(--accent-danger); }
+        .stat-card.ai::after { background: var(--accent-cyan); }
+        .stat-label { font-size: 13px; text-transform: uppercase; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .stat-val { font-size: 32px; font-weight: 800; }
+        .section-title { font-size: 20px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 32px; background: var(--bg-secondary); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); }
+        th, td { padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        th { background: rgba(255, 255, 255, 0.03); color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 12px; }
+        .badge { padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; display: inline-block; }
+        .badge-pass { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+        .badge-fail { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+        .badge-ai { background: rgba(6, 182, 212, 0.15); color: #22d3ee; }
+        .code-block { background: #050811; border: 1px solid var(--border-color); border-radius: 8px; padding: 12px; font-family: monospace; font-size: 12px; color: #cbd5e1; overflow-x: auto; margin-top: 8px; }
+        .footer { text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 48px; border-top: 1px solid var(--border-color); padding-top: 24px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div>
+                <h1 class="title-badge">AI Testing Platform</h1>
+                <p style="color: var(--text-muted); margin-top: 4px;">Automated Quality & Test Run Executive Summary</p>
+            </div>
+            <div>
+                <span class="meta-tag">Run ID: RUN-94812</span>
+                <span class="meta-tag" style="margin-left: 8px;">Status: PASSED (95%)</span>
+            </div>
+        </header>
+
+        <section class="grid-stats">
+            <div class="stat-card">
+                <div class="stat-label">Total Executed Tests</div>
+                <div class="stat-val">120</div>
+            </div>
+            <div class="stat-card passed">
+                <div class="stat-label">Passed Tests</div>
+                <div class="stat-val" style="color: var(--accent-success)">114</div>
+            </div>
+            <div class="stat-card failed">
+                <div class="stat-label">Failed Assertions</div>
+                <div class="stat-val" style="color: var(--accent-danger)">4</div>
+            </div>
+            <div class="stat-card ai">
+                <div class="stat-label">AI Healed Locators</div>
+                <div class="stat-val" style="color: var(--accent-cyan)">3</div>
+            </div>
+        </section>
+
+        <h2 class="section-title">Tested Project Repositories</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Stack</th>
+                    <th>Total Tests</th>
+                    <th>Pass Rate</th>
+                    <th>AI Risk Score</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Payments API Service</strong></td>
+                    <td>MAVEN</td>
+                    <td>42</td>
+                    <td>100%</td>
+                    <td><span class="badge badge-pass">28.5 (LOW)</span></td>
+                    <td><span class="badge badge-pass">PASSED</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Checkout Frontend Web</strong></td>
+                    <td>NODEJS</td>
+                    <td>36</td>
+                    <td>86.1%</td>
+                    <td><span class="badge badge-fail">89.2 (CRITICAL)</span></td>
+                    <td><span class="badge badge-fail">FAILED</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Identity Auth Core</strong></td>
+                    <td>PYTHON</td>
+                    <td>42</td>
+                    <td>97.6%</td>
+                    <td><span class="badge badge-ai">38.0 (MEDIUM)</span></td>
+                    <td><span class="badge badge-pass">PASSED</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="section-title">Failed Test Diagnostics & AI Self-Healing Analysis</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Test Name</th>
+                    <th>Module</th>
+                    <th>Duration</th>
+                    <th>Failure Reason</th>
+                    <th>AI Self-Healing Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>Checkout Button Disabled on Empty Cart</code></td>
+                    <td>Checkout Frontend Web</td>
+                    <td>3.42s</td>
+                    <td style="color: #f87171;">AssertionError: expected button to be disabled=true</td>
+                    <td><span class="badge badge-ai">Healed to [data-testid=checkout-btn]</span></td>
+                </tr>
+                <tr>
+                    <td><code>Rate Limit Brute Force Login Attempts</code></td>
+                    <td>Identity Auth Core</td>
+                    <td>2.81s</td>
+                    <td style="color: #f87171;">HTTP 429 expected, received 200 OK on attempt 6</td>
+                    <td><em>N/A (API logic assertion)</em></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <footer class="footer">
+            Generated autonomously by AI-Based Automated Software Testing Platform &bull; ISO/IEC 25010 Quality Standards Compliant
+        </footer>
+    </div>
+</body>
+</html>

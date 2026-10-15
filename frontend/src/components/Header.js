@@ -2,49 +2,62 @@ import React from "react";
 
 const viewContent = {
   Overview: {
-    title: "AI Testing Platform",
-    subtitle: "Monitor automated runs, AI insights, and quality trends.",
-    action: "New Test Run",
+    title: "Testing Operations & AI Telemetry",
+    subtitle: "Real-time orchestration of automated test pipelines, self-healing locators, and ML risk scores.",
+    action: "Launch Full Regression",
   },
   Projects: {
-    title: "Projects",
-    subtitle: "Track project quality and launch test runs directly.",
-    action: "Run Selected Project",
+    title: "Project Repository Registry",
+    subtitle: "Connect Git repositories, detect project build frameworks, and execute live tests.",
+    action: "Test Repository",
+  },
+  "AI Studio": {
+    title: "AI Test Synthesis & Generator Studio",
+    subtitle: "Transform requirements into Given-When-Then BDD test cases with automatic edge cases.",
+    action: "Synthesize New Tests",
   },
   "Test Runs": {
-    title: "Test Runs",
-    subtitle: "Inspect recent runs and trigger a fresh regression cycle.",
-    action: "Run Regression",
+    title: "Continuous Test Run Pipelines",
+    subtitle: "Inspect historical executions, duration timelines, and flaky test quarantine statuses.",
+    action: "Trigger Pipeline",
   },
   "AI Insights": {
-    title: "AI Insights",
-    subtitle: "Review high-risk modules and predictive quality indicators.",
-    action: "Analyze Risk",
+    title: "Machine Learning Defect Insights",
+    subtitle: "Predictive vulnerability scoring based on code churn, commit frequency, and complexity.",
+    action: "Recalculate Risk",
   },
   Reports: {
-    title: "Reports",
-    subtitle: "Generate and review exportable quality and trend reports.",
-    action: "Generate Report",
+    title: "Executive Quality Analytics & Reports",
+    subtitle: "Export executive quality briefs, compliance audits, and defect trend dashboards.",
+    action: "Export Quality Report",
   },
   Settings: {
-    title: "Settings",
-    subtitle: "Tune notifications and execution preferences.",
-    action: "Save Settings",
+    title: "Cluster Preferences & Integrations",
+    subtitle: "Configure Selenium grid matrix, webhooks, and AI self-healing sensitivity thresholds.",
+    action: "Save Configuration",
   },
 };
 
-export default function Header({ activeView, onPrimaryAction }) {
+export default function Header({ activeView, onPrimaryAction, currentRole }) {
   const content = viewContent[activeView] ?? viewContent.Overview;
 
   return (
     <header className="header">
       <div>
-        <h1>{content.title}</h1>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "4px" }}>
+          <h1>{content.title}</h1>
+          <span className="badge badge-ai" style={{ fontSize: "11px" }}>
+            {currentRole} WORKSPACE
+          </span>
+        </div>
         <p>{content.subtitle}</p>
       </div>
-      <button className="primary" onClick={onPrimaryAction}>
-        {content.action}
-      </button>
+      <div className="header-actions">
+        <button type="button" className="btn-primary" onClick={onPrimaryAction}>
+          <span>⚡</span>
+          <span>{content.action}</span>
+        </button>
+      </div>
     </header>
   );
 }

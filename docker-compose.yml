@@ -1,6 +1,6 @@
 services:
   db:
-    image: mysql:8
+    image: mysql:8.0
     container_name: ai-mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -9,30 +9,53 @@ services:
       - "3307:3306"
     volumes:
       - mysql-data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
       interval: 10s
+      timeout: 5s
       retries: 5
+    networks:
+      - ai-testing-net
 
   backend:
     build: ./backend
     container_name: ai-backend
     environment:
-      DB_URL: jdbc:mysql://db:3306/ai_testing
-      DB_USER: root
-      DB_PASSWORD: root
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/ai_testing
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
       JWT_SECRET: MySecretKey123
+      AI_ENGINE_HOST: http://ai-engine:5000
     ports:
       - "8080:8080"
     depends_on:
       db:
         condition: service_healthy
+    networks:
+      - ai-testing-net
 
   ai-engine:
     build: ./ai-engine
     container_name: ai-engine
     ports:
       - "5000:5000"
+    networks:
+      - ai-testing-net
+
+  frontend:
+    build: ./frontend
+    container_name: ai-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - ai-testing-net
 
 volumes:
   mysql-data:
+
+networks:
+  ai-testing-net:
+    driver: bridge

@@ -1,0 +1,74 @@
+{
+  "report_id": "RPT-2026-X94812",
+  "generated_at": "2026-10-15T22:30:00Z",
+  "platform": "AI-Based Automated Software Testing Platform",
+  "environment": {
+    "name": "Staging US-East",
+    "browser": "Chrome 122 Headless",
+    "os": "Ubuntu 22.04 LTS",
+    "base_url": "https://staging.app.io"
+  },
+  "summary": {
+    "total_tests": 120,
+    "passed": 114,
+    "failed": 4,
+    "skipped": 2,
+    "pass_rate_percentage": 95.0,
+    "total_duration_ms": 284500,
+    "overall_status": "PASSED_WITH_WARNINGS"
+  },
+  "ai_metrics": {
+    "model_loaded": true,
+    "self_healed_locators_count": 3,
+    "flaky_tests_detected": 1,
+    "high_risk_modules_flagged": 2,
+    "ai_generated_tests_executed": 38
+  },
+  "projects_tested": [
+    {
+      "name": "Payments API Service",
+      "tech_stack": "MAVEN",
+      "tests_total": 42,
+      "passed": 42,
+      "failed": 0,
+      "health": "HEALTHY",
+      "predicted_risk_score": 28.5
+    },
+    {
+      "name": "Checkout Frontend Web",
+      "tech_stack": "NODEJS",
+      "tests_total": 36,
+      "passed": 31,
+      "failed": 5,
+      "health": "NEEDS_ATTENTION",
+      "predicted_risk_score": 89.2
+    },
+    {
+      "name": "Identity Auth Core",
+      "tech_stack": "PYTHON",
+      "tests_total": 42,
+      "passed": 41,
+      "failed": 1,
+      "health": "HEALTHY",
+      "predicted_risk_score": 38.0
+    }
+  ],
+  "failed_tests_detail": [
+    {
+      "test_name": "Checkout Button Disabled on Empty Cart",
+      "module": "Checkout Frontend Web",
+      "duration_ms": 3420,
+      "error": "AssertionError: Expected button to be disabled=true, but found enabled",
+      "ai_self_healing_attempted": true,
+      "ai_healing_result": "Healed to [data-testid=checkout-btn] but assertion condition failed"
+    },
+    {
+      "test_name": "Rate Limit Brute Force Login Attempts",
+      "module": "Identity Auth Core",
+      "duration_ms": 2810,
+      "error": "Expected HTTP 429 Too Many Requests, received 200 OK on attempt 6",
+      "ai_self_healing_attempted": false,
+      "ai_healing_result": "N/A - API assertion"
+    }
+  ]
+}

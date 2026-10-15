@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="AITestPlatformSuite" verbose="2" parallel="classes" thread-count="4">
+    <test name="EnterpriseApiRegression">
+        <classes>
+            <class name="com.aitest.engine.ApiTestRunner" />
+        </classes>
+    </test>
+</suite>
