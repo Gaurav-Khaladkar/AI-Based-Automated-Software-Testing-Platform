@@ -1,7 +1,7 @@
 <div align="center">
 
 # ⚡ AI-Based Automated Software Testing Platform
-### Enterprise-Grade Autonomous Test Orchestration, ML Bug Prediction & Self-Healing QA Engine
+### Enterprise Autonomous Test Orchestration, ML Bug Prediction & Self-Healing QA Engine
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen?style=for-the-badge&logo=github-actions)](file:///ci/github-actions.yml)
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.2.5-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)](file:///backend)
@@ -11,17 +11,25 @@
 [![Docker Ready](https://img.shields.io/badge/Docker-Compose_Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](file:///docker-compose.yml)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](file:///LICENSE)
 
+<br/>
+
+<p align="center">
+  <img src="docs/assets/hero-banner.jpg" alt="AI-Based Automated Software Testing Platform Hero Banner" width="100%" style="border-radius: 14px; box-shadow: 0 15px 40px rgba(0,0,0,0.6);" />
+</p>
+
 <p align="center">
   <b>A unified, multi-tenant quality engineering platform that combines continuous Git repository test execution, NLP-driven requirement test synthesis, Gradient-Boosted bug risk prediction, and automated UI locator self-healing.</b>
 </p>
 
 [System Architecture](#1-high-level-system-architecture) &bull;
-[Key Features](#2-core-capabilities--differentiators) &bull;
-[Interactive Diagrams](#3-interactive-architecture-diagrams) &bull;
-[Quick Start](#4-quick-start--how-to-run) &bull;
-[API Reference](#5-rest-api-specification) &bull;
-[Database Design](#6-database-schema--erd) &bull;
-[Resume Highlights](#7-resume--portfolio-highlights)
+[Pipeline Infographic](#2-end-to-end-testing-pipeline-infographic) &bull;
+[Core Features](#3-core-capabilities--differentiators) &bull;
+[AI & Self-Healing Engine](#4-ai-intelligence--self-healing-engine) &bull;
+[Dashboard Showcase](#5-interactive-operations-dashboard-showcase) &bull;
+[Quick Start](#6-quick-start--how-to-run) &bull;
+[API Reference](#7-rest-api-specification) &bull;
+[Database Schema](#8-database-schema--erd) &bull;
+[Resume Highlights](#9-resume--portfolio-highlights)
 
 ---
 
@@ -80,23 +88,13 @@ graph TB
 
 ---
 
-## 2. Core Capabilities & Differentiators
+## 2. End-to-End Testing Pipeline Infographic
 
-| Capability | Module | Technical Foundation | Value Delivered |
-|---|---|---|---|
-| **Live Git Repo Testing** | [`backend/`](file:///backend) | Java 17, ProcessBuilder, Git CLI | Direct URL testing with stack autodetection (`mvn`, `npm`, `pytest`) |
-| **NLP Test Synthesis** | [`ai-engine/`](file:///ai-engine) | NLP Parser, Rule Engine, LLM Ready | Instant BDD Given-When-Then test cases from user stories |
-| **ML Bug Risk Scoring** | [`ai-engine/`](file:///ai-engine) | Gradient Boosting Regressor, Scikit-learn | 0-100 risk score based on LOC, churn rate, and commit frequency |
-| **Self-Healing Locators** | [`automation-engine/`](file:///automation-engine) | Selenium 4 POM, Multi-Attribute Similarity | Recovers broken CSS/XPath selectors to stop flaky test failures |
-| **Flaky Test Detector** | [`test-engine/`](file:///test-engine) | Duration CV & Status Flip Ratio | Automatically detects intermittent test flip-flopping |
-| **Executive Reports** | [`reports/`](file:///reports) | Python, HTML5, SVG Visuals | Executive quality briefs, failure trend charts, and JSON telemetry |
-| **RBAC Security** | [`backend/`](file:///backend) | Spring Security 6, BCrypt, Stateless JWT | Strict role isolation across Admin, Developer, and QA Lead |
+<p align="center">
+  <img src="docs/assets/pipeline-diagram.jpg" alt="AI-Based Automated Software Testing Platform Pipeline" width="100%" style="border-radius: 14px; box-shadow: 0 15px 40px rgba(0,0,0,0.6);" />
+</p>
 
----
-
-## 3. Interactive Architecture Diagrams
-
-### 3.1 End-to-End Live Test Execution Lifecycle
+### Pipeline Execution Lifecycle Sequence
 
 ```mermaid
 sequenceDiagram
@@ -136,7 +134,27 @@ sequenceDiagram
 
 ---
 
-### 3.2 AI Testing Intelligence Pipeline
+## 3. Core Capabilities & Differentiators
+
+| Capability | Module | Technical Foundation | Value Delivered |
+|---|---|---|---|
+| **Live Git Repo Testing** | [`backend/`](file:///backend) | Java 17, ProcessBuilder, Git CLI | Direct URL testing with stack autodetection (`mvn`, `npm`, `pytest`) |
+| **NLP Test Synthesis** | [`ai-engine/`](file:///ai-engine) | NLP Parser, Rule Engine, LLM Ready | Instant BDD Given-When-Then test cases from user stories |
+| **ML Bug Risk Scoring** | [`ai-engine/`](file:///ai-engine) | Gradient Boosting Regressor, Scikit-learn | 0-100 risk score based on LOC, churn rate, and commit frequency |
+| **Self-Healing Locators** | [`automation-engine/`](file:///automation-engine) | Selenium 4 POM, Multi-Attribute Similarity | Recovers broken CSS/XPath selectors to stop flaky test failures |
+| **Flaky Test Detector** | [`test-engine/`](file:///test-engine) | Duration CV & Status Flip Ratio | Automatically detects intermittent test flip-flopping |
+| **Executive Reports** | [`reports/`](file:///reports) | Python, HTML5, SVG Visuals | Executive quality briefs, failure trend charts, and JSON telemetry |
+| **RBAC Security** | [`backend/`](file:///backend) | Spring Security 6, BCrypt, Stateless JWT | Strict role isolation across Admin, Developer, and QA Lead |
+
+---
+
+## 4. AI Intelligence & Self-Healing Engine
+
+<p align="center">
+  <img src="docs/assets/self-healing-risk-heatmap.jpg" alt="AI Self-Healing Locators & Defect Risk Prediction" width="100%" style="border-radius: 14px; box-shadow: 0 15px 40px rgba(0,0,0,0.6);" />
+</p>
+
+### AI Pipeline Flow
 
 ```mermaid
 flowchart TD
@@ -171,7 +189,13 @@ flowchart TD
 
 ---
 
-### 3.3 Role-Based Access Control (RBAC) Matrix
+## 5. Interactive Operations Dashboard Showcase
+
+<p align="center">
+  <img src="docs/assets/dashboard-ui-mockup.jpg" alt="AI Testing Platform Operations Dashboard Interface" width="100%" style="border-radius: 14px; box-shadow: 0 15px 40px rgba(0,0,0,0.6);" />
+</p>
+
+### Role-Based Access Control (RBAC) Matrix
 
 ```mermaid
 graph LR
@@ -209,7 +233,7 @@ graph LR
 
 ---
 
-## 4. Quick Start & How to Run
+## 6. Quick Start & How to Run
 
 ### Prerequisites
 - **Docker & Docker Compose** (Docker 20.10+ / Compose v2+)
@@ -217,7 +241,7 @@ graph LR
 
 ---
 
-### 4.1 Launch Everything with Docker Compose (Recommended)
+### 6.1 Launch Everything with Docker Compose (Recommended)
 
 ```bash
 # 1. Clone this repository
@@ -236,7 +260,7 @@ docker compose up --build -d
 
 ---
 
-### 4.2 Native Local Development (Without Docker)
+### 6.2 Native Local Development (Without Docker)
 
 #### Step 1: Start MySQL Database
 ```bash
@@ -274,7 +298,7 @@ npm start
 
 ---
 
-### 4.3 Automated UI & API Test Automation Suites
+### 6.3 Automated UI & API Test Automation Suites
 
 ```bash
 # Run comprehensive REST-Assured API test suite
@@ -286,7 +310,7 @@ mvn -f automation-engine/pom.xml test -Dapp.url=http://localhost:3000
 
 ---
 
-## 5. REST API Specification
+## 7. REST API Specification
 
 ### Backend API Reference (`http://localhost:8080`)
 
@@ -314,7 +338,7 @@ mvn -f automation-engine/pom.xml test -Dapp.url=http://localhost:3000
 
 ---
 
-## 6. Database Schema & ERD
+## 8. Database Schema & ERD
 
 ```mermaid
 erDiagram
@@ -379,7 +403,7 @@ erDiagram
 
 ---
 
-## 7. Resume & Portfolio Highlights
+## 9. Resume & Portfolio Highlights
 
 > **Technical Architecture & Bullet Points for Resumes / Portfolios:**
 > - **Architected an AI-Powered Automated Software Testing Platform** integrating Spring Boot 3, React 18, and Python Scikit-learn microservices to orchestrate multi-stack Git test execution.
@@ -390,10 +414,15 @@ erDiagram
 
 ---
 
-## 8. Repository Layout
+## 10. Repository Layout
 
 ```text
 AI-Based-Automated-Software-Testing-Platform/
+├── docs/assets/              # High-Resolution Graphic Design & Infographic Assets
+│   ├── hero-banner.jpg       # Enterprise AI Testing Platform 16:9 Hero Banner
+│   ├── pipeline-diagram.jpg  # Multi-Stage Automated Testing Pipeline Infographic
+│   ├── self-healing-risk-heatmap.jpg # AI Self-Healing & Defect Risk Visualization
+│   └── dashboard-ui-mockup.jpg # High-Fidelity Cyber-Dark Operations UI Mockup
 ├── backend/                  # Spring Boot 3 REST API & Git Orchestration Engine
 │   ├── src/main/java/com/aitest/
 │   │   ├── controller/       # ProjectTesting, User, TestCase, Prediction Controllers
